@@ -1,0 +1,48 @@
+<mat-nav-list class="h-100">
+  <div class="profile-card">
+
+    <img [src]="user" width="200" height="200" alt="Soufiane FADIL">
+    <div class="header">
+      <h2 *ngIf="getAuthUser.Role.id === 1;else docente">Admistrador</h2>
+      <h4>{{getAuthUser.Teacher?.nameTeacher}} {{getAuthUser.Teacher?.lastNameTeacher}}</h4>
+    </div>
+  </div>
+
+  <ng-template #docente>
+    <h2>Docente</h2>
+  </ng-template>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Servicios</h2>
+
+  <a *ngIf="(getAuthUser).Role.id === 1 || 2" mat-list-item routerLinkActive="list-item-active"
+    routerLink="/dashboard/adaptacion-curricular/lista">
+    <mat-icon>assignment </mat-icon> Documentación Individual
+  </a>
+  <a *ngIf="(getAuthUser).Role.id === 1" mat-list-item routerLinkActive="list-item-active"
+    routerLink="/dashboard/docente">
+    <mat-icon>library_add</mat-icon>Administrar Docentes
+  </a>
+  <a *ngIf="(getAuthUser).Role.id === 1" mat-list-item routerLinkActive="list-item-active"
+    routerLink="/dashboard/asignatura">
+    <mat-icon>library_add </mat-icon>Administrar Asignaturas
+  </a>
+  <a *ngIf="(getAuthUser).Role.id === 1" mat-list-item routerLinkActive="list-item-active"
+    routerLink="/dashboard/institucion">
+    <mat-icon>library_add </mat-icon>Administrar Instituciones
+  </a>
+  <a *ngIf="(getAuthUser).Role.id === 1 || 2" mat-list-item routerLinkActive="list-item-active"
+    routerLink="/dashboard/estudiante">
+    <mat-icon>library_add </mat-icon>Administrar Estudiante
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Registro de Adaptación Curricular </h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/adaptacion-curricular/estudiante">
+    <mat-icon>create </mat-icon> Ingresar registro de Adaptación Curricular
+  </a>
+
+</mat-nav-list>

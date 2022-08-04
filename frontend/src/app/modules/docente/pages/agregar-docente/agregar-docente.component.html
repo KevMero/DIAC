@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="row justify-content-center mt-4">
+
+    <div class="col-12 text-center">
+      <h1>
+        Registro de docentes
+      </h1>
+    </div>
+
+    <div class="col-11">
+      <form class="rounded bg-light p-4" [formGroup]="docenteForm" (ngSubmit)="guardarDocenteConfirm()"
+        autocomplete="off">
+        <div class="row">
+          <div class="mb-3 col-12 col-md-6">
+            <label for="name" class="form-label">Nombres:</label>
+            <input formControlName="nombre" type="text" class="form-control mb-2" id="name" name="name"
+              placeholder="Ingresar nombres">
+            <span *ngIf="!(validCampo('nombre').valid)" class="text-danger">
+              {{(validCampo('nombre').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-6">
+            <label for="lastName" class="form-label">Apellidos:</label>
+            <input formControlName="apellido" type="text" class="form-control mb-2" id="lastName" name="lastName"
+              placeholder="Ingresar apellidos">
+            <span *ngIf="!(validCampo('apellido').valid)" class="text-danger">
+              {{(validCampo('apellido').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-2 col-lg-1">
+            <label for="age" class="form-label">Edad:</label>
+            <input formControlName="edad" type="number" class="form-control mb-2" id="age" name="age" placeholder="30">
+            <span *ngIf="!(validCampo('edad').valid)" class="text-danger">
+              {{(validCampo('edad').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-4 col-lg-5">
+            <label for="email" class="form-label">Correo electrónico:</label>
+            <input (blur)="changeUser()" formControlName="email" type="email" name="email" id="email"
+              class="form-control mb-2" placeholder="Ingresar correo electrónico">
+            <span *ngIf="!(validCampo('email').valid)" class="text-danger">
+              {{(validCampo('email').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-6">
+            <label class="form-label">Seleccionar asignatura impartida por el docente:</label>
+            <select formControlName="asignatura" class="form-select" aria-label="Default select example">
+              <option value="0" selected>seleccionar asignatura</option>
+              <option [value]="asignatura.id" *ngFor="let asignatura of asignaturas">
+                {{asignatura.nameCourse}}
+              </option>
+            </select>
+            <span *ngIf="!(validSelect('asignatura').valid)" class="text-danger d-block mt-2">
+              {{(validSelect('asignatura').messagge)}}
+            </span>
+          </div>
+
+          <div class="col-4 mt-4">
+            <label for="usuario" class="form-label">Usuario de inicio de sesión:</label>
+            <input formControlName="usuario" type="text" class="form-control mb-2" id="usuario" name="usuario"
+              placeholder="Ingresar nombre de usuario">
+            <span *ngIf="!(validCampo('usuario').valid)" class="text-danger">
+              {{(validCampo('usuario').messagge)}}
+            </span>
+          </div>
+          <div class="col-4 mt-4">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input formControlName="contraseña" type="password" class="form-control mb-2" id="password" name="password"
+              placeholder="Ingresar contraseña">
+            <span *ngIf="!(validCampo('contraseña').valid)" class="text-danger">
+              {{(validCampo('contraseña').messagge)}}
+            </span>
+          </div>
+          <div class="col-4 mt-4">
+            <label class="form-label">Seleccionar rol de usuario:</label>
+            <select formControlName="rol" class="form-select" aria-label="Default select example">
+              <option value="0" selected>seleccionar rol</option>
+              <option value="1">Administrador</option>
+              <option value="2">Docente</option>
+            </select>
+            <span *ngIf="!(validSelect('rol').valid)" class="text-danger d-block mt-2">
+              {{(validSelect('rol').messagge)}}
+            </span>
+          </div>
+
+          <div class="col-12 text-end mt-2">
+            <button class="btn btn-danger" type="button" [routerLink]="['/dashboard/docente']">Atras</button>
+            <button class="btn btn-primary ms-3" type="submit">Guardar</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row px-4 flex-column justify-content-center h-100">
+
+    <div class="col-10 mx-auto my-3">
+
+    </div>
+
+    <div class="col-10 mx-auto justify-content-center flex-grow-1">
+
+      <div class="row">
+        <div class="mb-4 col-12">
+          <div class="form-floating">
+            <textarea [(ngModel)]="datoDesarrollo" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 90px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Datos de desarrollo:</label>
+          </div>
+        </div>
+        <br>
+        <div class="mb-4 col-12">
+          <div class="form-floating">
+            <textarea [(ngModel)]="antecedentes" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 90px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Antecedentes familiares:</label>
+          </div>
+        </div>
+        <br>
+        <div class="mb-4 col-12">
+          <div class="form-floating">
+            <textarea [(ngModel)]="historia" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 80px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Historia escolar:</label>
+          </div>
+        </div>
+        <br>
+        <div class="mb-4 col-6">
+          <div class="form-floating">
+            <textarea [(ngModel)]="estilos" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 80px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Estilos de aprendizaje: Visual. auditivo o kinestésico:</label>
+          </div>
+        </div>
+        <br>
+        <div class="mb-4 col-6">
+          <div class="form-floating">
+            <textarea [(ngModel)]="inteligencia" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 80px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Tipos de inteligencia:</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-12 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+    </div>
+
+  </div>
+</div>

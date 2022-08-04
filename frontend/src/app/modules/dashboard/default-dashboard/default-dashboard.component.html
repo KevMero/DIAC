@@ -1,0 +1,27 @@
+<div class="container-fluid d-flex flex-column dashboard">
+
+  <section class="row justify-content-end ">
+    <div class="col-content g-0 col-12">
+      <app-header></app-header>
+    </div>
+  </section>
+
+  <section class="row justify-content-end g-0 main flex-grow-1">
+
+    <!-- <div [ngClass]="{'col-sidebar-active': sidebarActived}" class="col-3 col-sidebar">
+      <app-sidebar></app-sidebar>
+    </div> -->
+
+    <div class="col-content col-12">
+      <router-outlet></router-outlet>
+    </div>
+
+  </section>
+
+  <section class="row justify-content-end">
+    <div class="col-content g-0 col-12">
+      <app-footer></app-footer>
+    </div>
+  </section>
+
+</div>

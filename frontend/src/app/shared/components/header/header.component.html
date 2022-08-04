@@ -1,0 +1,48 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span> APP LOGO </span>
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px">
+
+
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="getAuthUser">
+              <a mat-list-item class="nav-link">
+                <mat-icon>account_circle</mat-icon>{{ getAuthUser.username}}
+              </a>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <a mat-list-item class="nav-link">
+                <mat-icon>exit_to_app</mat-icon>Sign out
+              </a>
+            </button>
+          </mat-menu>
+
+        </li>
+
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+  <div class="offcanvas-header">
+    <h2 class="offcanvas-title flex-grow-1 text-center mb-0 fw-bold" id="offcanvasLabel">MENU</h2>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body p-0 h-100">
+
+    <app-sidebar></app-sidebar>
+
+  </div>
+
+</div>

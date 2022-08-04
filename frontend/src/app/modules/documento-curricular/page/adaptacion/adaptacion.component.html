@@ -1,0 +1,175 @@
+<div class="container">
+  <div class="row px-4 flex-column h-100">
+
+    <div class="col-10 mt-2 mx-auto">
+
+      <form class="row justify-content-center align-items-center">
+        <div class="mb-3 col-12 col-md-4 col-lg-4">
+          <label for="grado" class="form-label fw-bold">Grado:</label>
+          <input [(ngModel)]="grado" type="text" class="form-control form-control-sm mb-2" id="grado" name="grado"
+            placeholder="Ingrese grado">
+        </div>
+
+        <div class="mb-3 col-12 col-md-4 col-lg-4">
+          <label for="ente" class="form-label fw-bold">Ente:</label>
+          <input [(ngModel)]="ente" type="text" class="form-control form-control-sm mb-2" id="ente" name="ente"
+            placeholder="Ingrese ente">
+        </div>
+
+        <div class="mb-3 col-12 col-md-4 col-lg-4">
+          <label for="tiempo" class="form-label fw-bold">Tiempo:</label>
+          <input [(ngModel)]="tiempo" disabled type="text" class="form-control form-control-sm mb-2" id="tiempo"
+            name="tiempo" placeholder="Ingrese tiempo">
+        </div>
+      </form>
+    </div>
+
+    <hr>
+
+    <div class="col-10 mx-auto flex-grow-1">
+
+      <div class="row">
+        <h2 class="fw-bold">Asignaturas seleccionadas</h2>
+        <div class="col-12">
+          <div class="badge bg-primary p-2 me-2 mb-2 rounded-pill"
+            *ngFor="let asignatura of registerDocumentCurricular.asignaturaListSelected">
+            <h5 class="m-0">{{asignatura.nameCourse}}</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <h2 class="fw-bold">Competencia curricular</h2>
+        <div class="mb-4 col-6">
+          <div class="form-floating">
+            <textarea [(ngModel)]="toDo" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+              style="height: 120px">
+          </textarea>
+            <label for="floatingTextarea2">¿Qué puede hacer?</label>
+          </div>
+        </div>
+        <div class="mb-4 col-6">
+          <div class="form-floating">
+            <textarea [(ngModel)]="howToDo" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 120px">
+          </textarea>
+            <label for="floatingTextarea2">¿Cómo lo hace?</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <h2 class="fw-bold">Propuesta curricular adaptada</h2>
+        <div class="col-12" *ngFor="let asignatura of registerDocumentCurricular.asignaturaListSelected">
+          <p>
+            <a class="btn btn-secondary mb-4 col-12" data-bs-toggle="collapse"
+              [href]="renameForId(asignatura.nameCourse)" role="button" aria-expanded="false" aria-controls="collapse">
+              {{asignatura.nameCourse}}
+            </a>
+          </p>
+          <!--Collapse-->
+          <div class="collapse " [id]="renameForIdCollapse(asignatura.nameCourse)">
+            <div class="card card-body">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalObjectives"
+                data-bs-whatever="@mdo" (click)="openObjectives(asignatura)">
+                + Añadir Objetivo
+              </button>
+              <br>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDestrezas"
+                data-bs-whatever="@fat" (click)="openDestrezas(asignatura)">
+                + Añadir Destreza
+              </button>
+            </div>
+
+            <br>
+
+            <p>
+              O.CN.2.1. Explorar y comprender los ciclos de vida y las características esenciales de las plantas y los
+              animales,
+              para establecer semejanzas y diferencias; clasificarlos en angiospermas o gimnospermas, vertebrados o
+              invertebrados,
+              respectivamente, y relacionarlos con su hábitat.
+            </p>
+
+          </div>
+          <!--end collapse-->
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-12 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!--Modal de objetivos-->
+<div class="modal fade" id="modalObjectives" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Objetivos</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let objetivo of ObjetivosActuales">
+            <div class="ms-2 me-auto form-check">
+              <input class="form-check-input" [id]="objetivo.id" type="checkbox"
+                (input)="fillArrayObjetivos($event,objetivo)" [checked]="marcarCheckboxObjetivos(objetivo.id)">
+              <label class="form-check-label" [for]="objetivo.id">
+                {{objetivo.nameObjective}}
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end modal-->
+
+
+<!--Modal de destrezas-->
+<div class="modal fade" id="modalDestrezas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Destrezas</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let destreza of destrezasActuales">
+            <div class="ms-2 me-auto form-check">
+              <input class="form-check-input" [id]="destreza.id" type="checkbox"
+                (input)="fillArrayDestrezas($event,destreza)" [checked]="marcarCheckboxDestrezas(destreza.id)">
+              <label class="form-check-label" [for]="destreza.id">
+                {{destreza.nameDestreza}}
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end modal-->
